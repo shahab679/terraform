@@ -1,5 +1,5 @@
 resource "aws_instance" "myec2" {
-  ami                    = ami-052efd3df9dad4825
+  ami                    = "ami-052efd3df9dad4825"
   instance_type          = "t2.micro"
   availability_zone      = "us-east-1a"
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
