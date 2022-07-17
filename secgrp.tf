@@ -4,7 +4,7 @@ resource "aws_security_group" "allow_tls" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
-    description      = "TLS from VPC"
+    description      = "Allow https"
     from_port        = 443
     to_port          = 443
     protocol         = "tcp"
