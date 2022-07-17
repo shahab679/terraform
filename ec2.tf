@@ -1,16 +1,16 @@
 resource "aws_instance" "myec2" {
-    ami = ami-052efd3df9dad4825
-    instance_type = "t2.micro"
-    availability_zone = "us-east-1a"
-    vpc_security_group_ids = [aws_security_group.allow_tls.id]
-    key_name = "aws-project1"
-    tags = {
+  ami                    = ami-052efd3df9dad4825
+  instance_type          = "t2.micro"
+  availability_zone      = "us-east-1a"
+  vpc_security_group_ids = [aws_security_group.allow_tls.id]
+  key_name               = "aws-project1"
+  tags = {
     name = "minikube_instance"
   }
 
-  
 
-provisioner "remote-exec" {
+
+  provisioner "remote-exec" {
     inline = [
       "sudo apt update -y",
       "sudo apt install docker.io -y",
@@ -22,12 +22,12 @@ provisioner "remote-exec" {
       "sudo cp kubectl /usr/local/bin/kubectl",
       "sudo usermod -aG docker ubuntu"
     ]
-connection {
+    connection {
       type        = "ssh"
       host        = self.public_ip
       user        = "ubuntu"
       private_key = file("/home/shahab/Downloads/aws-project1.pem")
 
     }
- }
+  }
 }
